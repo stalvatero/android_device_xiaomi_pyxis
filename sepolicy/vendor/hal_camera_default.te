@@ -21,4 +21,7 @@ allow hal_camera_default additional_prop:file {open read getattr map};
 
 get_prop(hal_camera_default, camera_ro_prop)
 get_prop(hal_camera_default, camera_prop)
+
+userdebug_or_eng(`
 get_prop(hal_camera_default, sensors_dbg_prop)
+')
