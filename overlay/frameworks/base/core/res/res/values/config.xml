@@ -1121,4 +1121,9 @@
     <!-- Whether to show a custom view for FOD -->
     <bool name="config_needCustomFODView">true</bool>
 
+    <!-- Specify if the fingerprint hardware support gestures-->
+    <bool name="config_fingerprintSupportsGestures">true</bool>
+
+    <!-- Enable system navigation keys. -->
+    <bool name="config_supportSystemNavigationKeys">true</bool>
 </resources>
