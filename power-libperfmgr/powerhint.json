@@ -212,15 +212,6 @@
             "ResetOnInit": true
         },
         {
-            "Name": "SchedBoost",
-            "Path": "/proc/sys/kernel/sched_boost",
-            "Values": [
-                "1",
-                "0"
-            ],
-            "ResetOnInit": true
-        },
-        {
             "Name": "PowerHALMainState",
             "Path": "vendor.powerhal.state",
             "Values": [
@@ -336,12 +327,6 @@
         },
         {
             "PowerHint": "LAUNCH",
-            "Node": "SchedBoost",
-            "Duration": 3000,
-            "Value": "1"
-        },
-        {
-            "PowerHint": "LAUNCH",
             "Node": "CPUBigClusterMaxFreq",
             "Duration": 3000,
             "Value": "9999999"
@@ -429,12 +414,6 @@
             "Node": "UfsHibern8Enable",
             "Duration": 3000,
             "Value": "0"
-        },
-        {
-            "PowerHint": "CAMERA_LAUNCH",
-            "Node": "SchedBoost",
-            "Duration": 1000,
-            "Value": "1"
         },
         {
             "PowerHint": "CAMERA_LAUNCH",
