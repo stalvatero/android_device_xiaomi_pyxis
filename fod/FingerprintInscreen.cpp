@@ -31,6 +31,8 @@
 #define DISPPARAM_PATH "/sys/devices/platform/soc/ae00000.qcom,mdss_mdp/drm/card0/card0-DSI-1/disp_param"
 #define DISPPARAM_HBM_FOD_ON "0x20000"
 #define DISPPARAM_HBM_FOD_OFF "0xE0000"
+#define HBM_OFF_DELAY 50
+#define HBM_ON_DELAY 320
 
 #define FOD_STATUS_PATH "/sys/devices/virtual/touch/tp_dev/fod_status"
 #define FOD_STATUS_ON 1
@@ -83,6 +85,18 @@ Return<void> FingerprintInscreen::onStartEnroll() {
 
 Return<void> FingerprintInscreen::onFinishEnroll() {
     return Void();
+}
+
+Return<int32_t> FingerprintInscreen::getHbmOffDelay() {
+    return HBM_OFF_DELAY;
+}
+
+Return<int32_t> FingerprintInscreen::getHbmOnDelay() {
+    return HBM_ON_DELAY;
+}
+
+Return<bool> FingerprintInscreen::supportsAlwaysOnHBM() {
+    return true;
 }
 
 Return<void> FingerprintInscreen::switchHbm(bool enabled) {
