@@ -98,8 +98,5 @@ persist.vendor.sys.fp.fod.location.X_Y=445,1910
 persist.vendor.sys.fp.fod.size.width_height=190,190
 ro.hardware.fp.fod=true
 
-# Zygote preforking
-persist.device_config.runtime_native.usap_pool_enabled=true
-
 # Seamless transfer
 sys.fflag.override.settings_seamless_transfer=true
