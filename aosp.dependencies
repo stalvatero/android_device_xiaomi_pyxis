@@ -2,19 +2,19 @@
   {
     "repository"  : "MemeGang-Development/HentaiKremul",
     "target_path" : "kernel/xiaomi/pyxis",
-    "branch"      : "RiasVersion",
+    "branch"      : "AkenoHimejima",
     "remote"      : "github"
   },
   {
-    "repository"  : "MemeGang-Development/vendor_xiaomi_pyxis",
+    "repository"  : "SlimShadys/android_vendor_xiaomi_pyxis",
     "target_path" : "vendor/xiaomi/pyxis",
     "branch"      : "master",
     "remote"      : "github"
   },
   {
-    "repository"  : "DarkAngelGR/prebuilts_clang_host_linux-x86_clang-11",
+    "repository"  : "kdrag0n/proton-clang",
     "target_path" : "prebuilts/clang/host/linux-x86/clang-11",
-    "branch"      : "r10.0",
+    "branch"      : "master",
     "remote"      : "github"
   }
 ]
