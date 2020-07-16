@@ -145,6 +145,10 @@ Return<bool> FingerprintInscreen::supportsAlwaysOnHBM() {
     return true;
 }
 
+Return<bool> FingerprintInscreen::noDim() {
+    return true;
+}
+
 Return<void> FingerprintInscreen::switchHbm(bool enabled) {
     if (enabled) {
         set(DISPPARAM_PATH, DISPPARAM_HBM_FOD_ON);
