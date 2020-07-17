@@ -25,6 +25,8 @@
 #include <fstream>
 #include <cmath>
 
+#define FINGERPRINT_ACQUIRED_VENDOR 6
+
 #define COMMAND_NIT 10
 #define PARAM_NIT_630_FOD 1
 #define PARAM_NIT_NONE 0
@@ -43,7 +45,7 @@
 #define FOD_ERROR_VENDOR 6
 
 #define FOD_SENSOR_X 445
-#define FOD_SENSOR_Y 1910
+#define FOD_SENSOR_Y 1931
 #define FOD_SENSOR_SIZE 190
 
 namespace vendor {
@@ -142,10 +144,6 @@ Return<int32_t> FingerprintInscreen::getHbmOnDelay() {
 }
 
 Return<bool> FingerprintInscreen::supportsAlwaysOnHBM() {
-    return true;
-}
-
-Return<bool> FingerprintInscreen::noDim() {
     return true;
 }
 
