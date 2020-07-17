@@ -490,6 +490,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     WfdCommon
 
+# XiaomiParts
+PRODUCT_PACKAGES += \
+    XiaomiParts
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(DEVICE_PATH)
