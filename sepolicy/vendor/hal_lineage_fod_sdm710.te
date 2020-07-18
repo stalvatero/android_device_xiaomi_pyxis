@@ -7,7 +7,7 @@ init_daemon_domain(hal_lineage_fod_sdm710)
 wakelock_use(hal_lineage_fod_sdm710)
 
 # Allow access to the HALs
-hal_client_domain(hal_lineage_fod_sm6150, hal_fingerprint)
+hal_client_domain(hal_lineage_fod_sdm710, hal_fingerprint)
 hal_client_domain(hal_lineage_fod_sdm710, hal_touchfeature)
 
 # Allow binder communication with hal_fingerprint_sdm710
