@@ -1,20 +1,18 @@
 [
   {
+    "repository": "LineageOS/android_hardware_xiaomi",
+    "target_path": "hardware/xiaomi"
+  },
+  {
     "repository"  : "MemeGang-Development/HentaiKremul",
     "target_path" : "kernel/xiaomi/pyxis",
     "branch"      : "AkenoHimejima",
     "remote"      : "github"
   },
   {
-    "repository"  : "SlimShadys/android_vendor_xiaomi_pyxis",
-    "target_path" : "vendor/xiaomi/pyxis",
-    "branch"      : "master",
-    "remote"      : "github"
-  },
-  {
-    "repository"  : "kdrag0n/proton-clang",
-    "target_path" : "prebuilts/clang/host/linux-x86/clang-11",
-    "branch"      : "master",
-    "remote"      : "github"
+    "repository": "packages_apps_PixelLiveWallpaper",
+    "target_path": "packages/apps/PixelLiveWallpaper",
+    "branch": "ten",
+    "remote": "pixel-gitlab"
   }
 ]
