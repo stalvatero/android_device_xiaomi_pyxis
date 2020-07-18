@@ -74,9 +74,6 @@ TARGET_KERNEL_SOURCE := kernel/xiaomi/pyxis
 TARGET_KERNEL_CONFIG := hentai_pyxis_defconfig
 TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/clang-$(TARGET_KERNEL_CLANG_VERSION)
 
-# ANT+
-BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
-
 # Platform
 TARGET_BOARD_PLATFORM := sdm710
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno616
