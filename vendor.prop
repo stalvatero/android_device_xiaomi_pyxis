@@ -112,7 +112,7 @@ ro.vendor.display.sensortype=2
 # DRM
 drm.service.enabled=true
 
-# FRP
+# Factory Reset Protection
 ro.frp.pst=/dev/block/bootdevice/by-name/frp
 
 # Graphics

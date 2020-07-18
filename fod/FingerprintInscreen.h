@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 The LineageOS Project
+ * Copyright (C) 2019-2020 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,25 +14,26 @@
  * limitations under the License.
  */
 
-#ifndef VENDOR_LINEAGE_BIOMETRICS_FINGERPRINT_INSCREEN_V1_1_FINGERPRINTINSCREEN_H
-#define VENDOR_LINEAGE_BIOMETRICS_FINGERPRINT_INSCREEN_V1_1_FINGERPRINTINSCREEN_H
+#ifndef VENDOR_LINEAGE_BIOMETRICS_FINGERPRINT_INSCREEN_V1_0_FINGERPRINTINSCREEN_H
+#define VENDOR_LINEAGE_BIOMETRICS_FINGERPRINT_INSCREEN_V1_0_FINGERPRINTINSCREEN_H
 
-#include <vendor/lineage/biometrics/fingerprint/inscreen/1.1/IFingerprintInscreen.h>
+#include <vendor/lineage/biometrics/fingerprint/inscreen/1.0/IFingerprintInscreen.h>
 #include <vendor/xiaomi/hardware/fingerprintextension/1.0/IXiaomiFingerprint.h>
+#include <vendor/xiaomi/hardware/touchfeature/1.0/ITouchFeature.h>
 
 namespace vendor {
 namespace lineage {
 namespace biometrics {
 namespace fingerprint {
 namespace inscreen {
-namespace V1_1 {
+namespace V1_0 {
 namespace implementation {
 
 using ::android::sp;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using V1_0::IFingerprintInscreenCallback;
 using ::vendor::xiaomi::hardware::fingerprintextension::V1_0::IXiaomiFingerprint;
+using ::vendor::xiaomi::hardware::touchfeature::V1_0::ITouchFeature;
 
 class FingerprintInscreen : public IFingerprintInscreen {
 public:
@@ -51,26 +52,22 @@ public:
     Return<void> setLongPressEnabled(bool enabled) override;
     Return<int32_t> getDimAmount(int32_t brightness) override;
     Return<bool> shouldBoostBrightness() override;
-    Return<void> setCallback(const sp<IFingerprintInscreenCallback>& callback) override;
-    Return<int32_t> getHbmOffDelay() override;
-    Return<int32_t> getHbmOnDelay() override;
-    Return<bool> supportsAlwaysOnHBM() override;
-    Return<void> switchHbm(bool enabled) override;
+    Return<void> setCallback(const sp<::vendor::lineage::biometrics::fingerprint::inscreen::V1_0::IFingerprintInscreenCallback>& callback) override;
 
 private:
+    sp<ITouchFeature> TouchFeatureService;
     sp<IXiaomiFingerprint> xiaomiFingerprintService;
 
-    // android system properties
-    static constexpr const char* propFODOffset = "persist.vendor.sys.fp.fod.location.X_Y";
-    static constexpr const char* propFODSize = "persist.vendor.sys.fp.fod.size.width_height";
+    std::mutex mCallbackLock;
+    sp<IFingerprintInscreenCallback> mCallback;
 };
 
 }  // namespace implementation
-}  // namespace V1_1
+}  // namespace V1_0
 }  // namespace inscreen
 }  // namespace fingerprint
 }  // namespace biometrics
 }  // namespace lineage
 }  // namespace vendor
 
-#endif  // VENDOR_LINEAGE_BIOMETRICS_FINGERPRINT_INSCREEN_V1_1_FINGERPRINTINSCREEN_H
+#endif  // VENDOR_LINEAGE_BIOMETRICS_FINGERPRINT_INSCREEN_V1_0_FINGERPRINTINSCREEN_H

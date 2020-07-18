@@ -24,6 +24,13 @@
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveNotificationLed">true</bool>
 
+     <!-- Indicate whether to allow the device to suspend when the screen is off
+     due to the proximity sensor.  This resource should only be set to true
+     if the sensor HAL correctly handles the proximity sensor as a wake-up source.
+     Otherwise, the device may fail to wake out of suspend reliably.
+     The default is false. -->
+    <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
+
     <!-- Default value for led color when battery is fully charged -->
      <integer name="config_notificationsBatteryFullARGB">0x7F007F00</integer>
 
@@ -639,7 +646,7 @@
     <!-- Screen brightness used to dim the screen while dozing in a very low power state.
          May be less than the minimum allowed brightness setting
          that can be set by the user. -->
-    <integer name="config_screenBrightnessDoze">15</integer>
+    <integer name="config_screenBrightnessDoze">17</integer>
 
     <!-- Default screen brightness setting.
          Must be in the range specified by minimum and maximum. -->
@@ -1036,6 +1043,13 @@
     <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
     <integer name="config_shutdownBatteryTemperature">600</integer>
 
+    <!-- Integer parameters of the wifi to cellular handover feature
+         wifi should not stick to bad networks -->
+    <integer name="config_wifi_framework_wifi_score_bad_rssi_threshold_24GHz">-85</integer>
+    <integer name="config_wifi_framework_wifi_score_bad_rssi_threshold_5GHz">-82</integer>
+    <integer name="config_wifi_framework_wifi_score_low_rssi_threshold_24GHz">-73</integer>
+    <integer name="config_wifi_framework_wifi_score_low_rssi_threshold_5GHz">-70</integer>
+
     <!-- Operating volatage for bluetooth controller. 0 by default-->
     <integer name="config_bluetooth_operating_voltage_mv">3300</integer>
 
@@ -1099,32 +1113,7 @@
         <item>3</item> <!-- COLOR_MODE_AUTOMATIC -->
     </integer-array>
 
-    <!-- If this is true, the screen will fade off. -->
-    <bool name="config_animateScreenLights">false</bool>
-
-    <!-- Whether device ignores the RSSNR signal implementation -->
-    <bool name="config_ignoreRssnrSignalLevel">true</bool>
-
-    <!-- Whether to show biometric help only when failed -->
-    <bool name="config_biometricHelpShowOnlyWhenFailed">true</bool>
-
-    <!-- Amount of time it takes for the light sensor to warm up in milliseconds.
-         For this time after the screen turns on, the Power Manager
-         will not debounce light sensor readings -->
-    <integer name="config_lightSensorWarmupTime">200</integer>
-
-    <!-- Whether device supports sensor based doze customizations -->
-    <bool name="config_dozePulsePickup">true</bool>
-    <bool name="config_dozePulseTilt">true</bool>
-    <bool name="config_dozePulseProximity">true</bool>
-
-    <!-- Whether to show a custom view for FOD -->
-    <bool name="config_needCustomFODView">true</bool>
-
-    <!-- Specify if the fingerprint hardware support gestures-->
-    <bool name="config_fingerprintSupportsGestures">true</bool>
-
-    <!-- Enable system navigation keys. -->
-    <bool name="config_supportSystemNavigationKeys">true</bool>
+    <!-- Shows the required view for in-display fingerprint -->
+    <bool name="config_supportsInDisplayFingerprint">true</bool>
 
 </resources>
