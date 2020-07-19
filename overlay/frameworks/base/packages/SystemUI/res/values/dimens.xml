@@ -15,6 +15,7 @@
  * limitations under the License.
 */
 -->
+
 <resources>
     <dimen name="rounded_corner_content_padding">16dp</dimen>
     <dimen name="status_bar_extra_padding">6dp</dimen>
