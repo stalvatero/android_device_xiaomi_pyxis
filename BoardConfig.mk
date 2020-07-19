@@ -127,6 +127,8 @@ USE_DEVICE_SPECIFIC_GPS := true
 # HIDL
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE += $(DEVICE_PATH)/framework_manifest.xml
+
 
 # NFC
 TARGET_USES_NQ_NFC := true
