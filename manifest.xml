@@ -378,7 +378,6 @@
             <name>IGoodixFingerprintDaemon</name>
             <instance>default</instance>
         </interface>
-        <fqname>@2.1::IGoodixFingerprintDaemon/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.xiaomi.hardware.fingerprintextension</name>
@@ -388,7 +387,6 @@
             <name>IXiaomiFingerprint</name>
             <instance>default</instance>
         </interface>
-        <fqname>@1.0::IXiaomiFingerprint/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.qti.data.factory</name>
