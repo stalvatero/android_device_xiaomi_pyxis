@@ -1,5 +1,4 @@
-soong_namespace {
-    imports: [
-        "hardware/xiaomi",
-    ],
+hidl_package_root {
+    name: "vendor.xiaomi",
+    path: "device/xiaomi/pyxis/interfaces",
 }

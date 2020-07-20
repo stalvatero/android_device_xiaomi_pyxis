@@ -9,7 +9,6 @@ ro.config.vc_call_vol_steps=7
 # Bluetooth
 persist.bluetooth.bqr.event_mask=14
 persist.bluetooth.bqr.min_interval_ms=500
-vendor.bluetooth.soc=cherokee
 
 # Camera
 camera.disable_zsl_mode=true
@@ -92,11 +91,6 @@ persist.sys.wfd.virtual=0
 
 # NFC
 ro.nfc.port=I2C
-
-# Fingerprint
-persist.vendor.sys.fp.fod.location.X_Y=445,1910
-persist.vendor.sys.fp.fod.size.width_height=190,190
-ro.hardware.fp.fod=true
 
 # Seamless transfer
 sys.fflag.override.settings_seamless_transfer=true

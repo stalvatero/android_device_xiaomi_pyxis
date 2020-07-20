@@ -1,5 +1,1 @@
-hal_attribute(displayfeature)
-
 hal_attribute(mlipay)
-
-hal_attribute(touchfeature)

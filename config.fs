@@ -31,13 +31,31 @@ user: AID_BLUETOOTH
 group: AID_BLUETOOTH
 caps: BLOCK_SUSPEND NET_ADMIN
 
+[system/bin/cnss-daemon]
+mode: 0755
+user: AID_BLUETOOTH
+group: AID_BLUETOOTH
+caps: NET_BIND_SERVICE
+
 [vendor/bin/pm-service]
 mode: 0755
 user: AID_SYSTEM
 group: AID_SYSTEM
 caps: NET_BIND_SERVICE SYS_BOOT
 
+[system/bin/pm-service]
+mode: 0755
+user: AID_SYSTEM
+group: AID_SYSTEM
+caps: NET_BIND_SERVICE SYS_BOOT
+
 [vendor/bin/pd-mapper]
+mode: 0755
+user: AID_SYSTEM
+group: AID_SYSTEM
+caps: NET_BIND_SERVICE
+
+[system/bin/pd-mapper]
 mode: 0755
 user: AID_SYSTEM
 group: AID_SYSTEM
@@ -95,4 +113,16 @@ caps: NET_BIND_SERVICE
 mode: 0771
 user: AID_SYSTEM
 group: AID_SYSTEM
+caps: 0
+
+[persist/]
+mode: 0771
+user: AID_SYSTEM
+group: AID_SYSTEM
+caps: 0
+
+[dsp/]
+mode: 0771
+user: AID_MEDIA
+group: AID_MEDIA
 caps: 0

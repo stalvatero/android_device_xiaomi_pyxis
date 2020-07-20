@@ -8,7 +8,6 @@ LOCAL_PATH := $(call my-dir)
 
 ifneq ($(filter pyxis,$(TARGET_DEVICE)),)
 include $(call all-makefiles-under,$(LOCAL_PATH))
-
 include $(CLEAR_VARS)
 
 # A/B builds require us to create the mount points at compile time.

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 The LineageOS Project
+ * Copyright (C) 2019 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@
 
 #include <vendor/lineage/biometrics/fingerprint/inscreen/1.0/IFingerprintInscreen.h>
 #include <vendor/xiaomi/hardware/fingerprintextension/1.0/IXiaomiFingerprint.h>
-#include <vendor/xiaomi/hardware/touchfeature/1.0/ITouchFeature.h>
 
 namespace vendor {
 namespace lineage {
@@ -33,7 +32,6 @@ using ::android::sp;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 using ::vendor::xiaomi::hardware::fingerprintextension::V1_0::IXiaomiFingerprint;
-using ::vendor::xiaomi::hardware::touchfeature::V1_0::ITouchFeature;
 
 class FingerprintInscreen : public IFingerprintInscreen {
 public:
@@ -52,14 +50,11 @@ public:
     Return<void> setLongPressEnabled(bool enabled) override;
     Return<int32_t> getDimAmount(int32_t brightness) override;
     Return<bool> shouldBoostBrightness() override;
-    Return<void> setCallback(const sp<::vendor::lineage::biometrics::fingerprint::inscreen::V1_0::IFingerprintInscreenCallback>& callback) override;
+    Return<void> setCallback(const sp<IFingerprintInscreenCallback>& callback) override;
 
 private:
-    sp<ITouchFeature> TouchFeatureService;
+    bool mFodCircleVisible;
     sp<IXiaomiFingerprint> xiaomiFingerprintService;
-
-    std::mutex mCallbackLock;
-    sp<IFingerprintInscreenCallback> mCallback;
 };
 
 }  // namespace implementation
