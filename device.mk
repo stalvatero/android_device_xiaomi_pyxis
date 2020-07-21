@@ -136,8 +136,9 @@ PRODUCT_PACKAGES += \
     libbthost_if \
     vendor.qti.hardware.bluetooth_audio@2.0 \
     vendor.qti.hardware.bluetooth_audio@2.0.vendor \
-    vendor.qti.hardware.btconfigstore@1.0.vendor \
     vendor.qti.hardware.bluetooth_sar@1.0.vendor
+#   vendor.qti.hardware.btconfigstore@1.0.vendor \
+    
 
 # Camera
 PRODUCT_PACKAGES += \
