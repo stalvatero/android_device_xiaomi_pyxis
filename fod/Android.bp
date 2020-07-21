@@ -26,19 +26,21 @@ cc_binary {
     shared_libs: [
         "libbase",
         "libhardware",
+        "libhardware_legacy",
         "libhidlbase",
         "libhidltransport",
         "liblog",
         "libhwbinder",
         "libutils",
+        "vendor.goodix.hardware.biometrics.fingerprint@2.1",
         "vendor.lineage.biometrics.fingerprint.inscreen@1.0",
         "vendor.xiaomi.hardware.fingerprintextension@1.0",
     ],
 }
 
 cc_library_static {
-    name: "libfod_extension",
-    srcs: ["fod_extension.cpp"],
+    name: "libfod_extension.xiaomi_pyxis",
+    srcs: ["FodExtension.cpp"],
     include_dirs: [
         "frameworks/native/services/surfaceflinger/CompositionEngine/include"
     ],
