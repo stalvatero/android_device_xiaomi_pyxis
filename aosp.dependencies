@@ -1,6 +1,6 @@
 [
   {
-    "repository"  : "stalvatero/android_vendor_xiaomi_pyxis",
+    "repository"  : "stalvatero/vendor_xiaomi_pyxis",
     "target_path" : "vendor/xiaomi/pyxis",
     "branch"      : "master",
     "remote"      : "github"
