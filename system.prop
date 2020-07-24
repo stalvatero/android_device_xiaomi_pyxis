@@ -9,6 +9,7 @@ ro.config.vc_call_vol_steps=7
 # Bluetooth
 persist.bluetooth.bqr.event_mask=14
 persist.bluetooth.bqr.min_interval_ms=500
+vendor.bluetooth.soc=cherokee
 
 # Camera
 camera.disable_zsl_mode=true
