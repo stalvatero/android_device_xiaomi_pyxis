@@ -498,6 +498,10 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     XiaomiParts
 
+# XiaomiPocketMode
+PRODUCT_PACKAGES += \
+    XiaomiPocketMode
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
