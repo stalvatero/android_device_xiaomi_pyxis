@@ -17,10 +17,8 @@
 #include <compositionengine/FodExtension.h>
 
 uint32_t getFodZOrder(uint32_t z, bool touched) {
-    if (!touched) {
-        z |= 0x1000000;
-    } else {
-        z |= 0x2000000;
+    if (touched) {
+        z |= 0x20000000u;
     }
 
     return z;
