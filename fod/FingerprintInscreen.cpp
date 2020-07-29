@@ -43,7 +43,7 @@
 #define FOD_SENSOR_Y 1920
 #define FOD_SENSOR_SIZE 190
 
-#define BRIGHTNESS_PATH "/sys/class/backlight/panel0-backlight/brightness"
+/* #define BRIGHTNESS_PATH "/sys/class/backlight/panel0-backlight/brightness" */
 
 namespace vendor {
 namespace lineage {
@@ -171,15 +171,16 @@ Return<void> FingerprintInscreen::setLongPressEnabled(bool) {
     return Void();
 }
 
-Return<int32_t> FingerprintInscreen::getDimAmount(int32_t /* brightness */) {
-    int realBrightness = get(BRIGHTNESS_PATH, 0);
+Return<int32_t> FingerprintInscreen::getDimAmount(int32_t brightness) {
     float alpha;
 
-    if (realBrightness > 500) {
-        alpha = 1.0 - pow(realBrightness / 2047.0 * 430.0 / 600.0, 0.455);
-    } else {
-        alpha = 1.0 - pow(realBrightness / 1680.0, 0.455);
-    }
+    float p1 = 7.747 * pow(10, -8);
+    float p2 = -0.0004924;
+    float p3 = 0.6545;
+    float p4 = 58.82;
+    float q1 = 58.82;
+
+    alpha = (p1 * pow(brightness, 3) + p2 * pow(brightness, 2) + p3 * brightness + p4) / (brightness + q1);
 
     return 255 * alpha;
 }
@@ -188,7 +189,8 @@ Return<bool> FingerprintInscreen::shouldBoostBrightness() {
     return false;
 }
 
-Return<void> FingerprintInscreen::setCallback(const sp<IFingerprintInscreenCallback>& /* callback */) {
+Return<void> FingerprintInscreen::setCallback(const sp<IFingerprintInscreenCallback>& callback) {
+    (void) callback;
     return Void();
 }
 
