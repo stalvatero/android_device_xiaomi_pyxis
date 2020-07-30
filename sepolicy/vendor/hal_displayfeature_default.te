@@ -7,7 +7,7 @@ init_daemon_domain(hal_displayfeature_default)
 binder_call(hal_displayfeature_client, hal_displayfeature_server)
 
 add_hwservice(hal_displayfeature_server, hal_displayfeature_hwservice)
-allow hal_displayfeature_client hal_configstore_ISurfaceFlingerConfigs:hwservice_manager find;
+# allow hal_displayfeature_client hal_configstore_ISurfaceFlingerConfigs:hwservice_manager find;
 allow hal_displayfeature_client hal_displayfeature_hwservice:hwservice_manager find;
 
 allow hal_displayfeature_default sysfs_graphics:dir r_dir_perms;
