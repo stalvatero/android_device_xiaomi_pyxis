@@ -205,7 +205,7 @@ BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 #SELINUX_IGNORE_NEVERALLOWS := true
 
 # Treble
-PRODUCT_VENDOR_MOVE_ENABLED := true
+#PRODUCT_VENDOR_MOVE_ENABLED := true
 
 # Use Snapdragon LLVM, if available
 TARGET_USE_SDCLANG := true
