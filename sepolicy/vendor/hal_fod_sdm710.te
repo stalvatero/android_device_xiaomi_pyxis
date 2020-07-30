@@ -1,4 +1,8 @@
-type sysfs_fod, sysfs_type, fs_type;
+type hal_fod_sdm710, domain;
+hal_server_domain(hal_fod_sdm710)
+
+type hal_fod_sdm710_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_fod_sdm710)
 
 allow hal_fod_sdm710 sysfs_fod:file rw_file_perms;
 allow hal_fod_sdm710 sysfs_graphics:dir r_dir_perms;
