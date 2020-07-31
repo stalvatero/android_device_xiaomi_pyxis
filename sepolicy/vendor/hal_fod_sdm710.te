@@ -1,4 +1,10 @@
-type hal_lineage_fod_default, coredomain;
+type hal_lineage_fod_default, coredomain, domain;
+type hal_lineage_fod_default_exec, exec_type, file_type;
+
+# Started by init
+init_daemon_domain(hal_lineage_fod_default)
+
+wakelock_use(hal_lineage_fod_default)
 
 allow hal_lineage_fod_default sysfs_fod:file rw_file_perms;
 allow hal_lineage_fod_default sysfs_graphics:dir r_dir_perms;
