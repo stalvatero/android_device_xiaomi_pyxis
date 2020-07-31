@@ -11,3 +11,6 @@ type vendor_power_prop, property_type;
 # Persist displayfeature type
 type persist_displayfeature_prop, property_type;
 
+# Render property
+type render_prop, property_type;
+
