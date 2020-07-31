@@ -1,3 +1,5 @@
+type hal_lineage_fod_default, coredomain;
+
 allow hal_lineage_fod_default sysfs_fod:file rw_file_perms;
 allow hal_lineage_fod_default sysfs_graphics:dir r_dir_perms;
 allow hal_lineage_fod_default sysfs_graphics:file rw_file_perms;
