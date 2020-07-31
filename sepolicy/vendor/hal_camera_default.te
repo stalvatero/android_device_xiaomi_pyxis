@@ -1,3 +1,5 @@
+type camera_persist_file, file_type, vendor_persist_type;
+
 allow hal_camera_default gpu_device:chr_file rw_file_perms;
 
 allow hal_camera_default remosaic_daemon_service:service_manager find;
@@ -9,17 +11,16 @@ allow hal_camera_default sysfs_leds:dir r_dir_perms;
 allow hal_camera_default sysfs_leds:file rw_file_perms;
 allow hal_camera_default sysfs_leds:lnk_file read;
 
-get_prop(hal_camera_default, vendor_camera_prop)
-allow hal_camera_default sysfs_thermal:file write;
-
 r_dir_file(hal_camera_default, persist_camera_file)
+r_dir_file(hal_camera_default, camera_persist_file)
+r_dir_file(hal_camera_default, mnt_vendor_file)
 
-allow hal_camera_default persist_file:lnk_file read;
-allow hal_camera_default unlabeled:dir search;
+set_prop(hal_camera_default, camera_prop)
+
+binder_call(hal_camera_default, remosaic_daemon)
 
 get_prop(hal_camera_default, camera_ro_prop)
-get_prop(hal_camera_default, camera_prop)
 
 userdebug_or_eng(`
-get_prop(hal_camera_default, sensors_dbg_prop)
+  get_prop(hal_camera_default, sensors_dbg_prop)
 ')
