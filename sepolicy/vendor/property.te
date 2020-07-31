@@ -8,3 +8,6 @@ type vendor_camera_prop, property_type;
 type vendor_fp_prop, property_type;
 type vendor_power_prop, property_type;
 
+# Persist displayfeature type
+type persist_displayfeature_prop, property_type;
+
