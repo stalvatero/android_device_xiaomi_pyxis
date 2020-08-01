@@ -205,9 +205,7 @@ BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/public
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 
 # Ignore SELinux neverallows
-ifneq ($(TARGET_BUILD_VARIANT),user)
-  SELINUX_IGNORE_NEVERALLOWS := true
-endif
+SELINUX_IGNORE_NEVERALLOWS := true
 
 # Treble
 PRODUCT_VENDOR_MOVE_ENABLED := true
