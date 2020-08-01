@@ -7,6 +7,12 @@ ro.config.media_vol_steps=25
 ro.config.vc_call_vol_steps=7
 
 # Bluetooth
+persist.bluetooth.a2dp_offload.disabled=false
+persist.vendor.bt.a2dp.aac_whitelist=false
+persist.vendor.btstack.enable.twsplus=true
+persist.vendor.btstack.enable.twsplussho=true
+ro.bluetooth.a2dp_offload.supported=true
+ro.bluetooth.library_name=libbluetooth_qti.so
 persist.bluetooth.bqr.event_mask=14
 persist.bluetooth.bqr.min_interval_ms=500
 vendor.bluetooth.soc=cherokee
@@ -40,7 +46,7 @@ debug.egl.hw=1
 debug.sf.hw=1
 debug.mdpcomp.logs=0
 debug.gralloc.enable_fb_ubwc=1
-debug.hwui.renderer=opengl
+debug.hwui.renderer=skiavk
 persist.demo.hdmirotationlock=false
 persist.hwc.enable_vds=1
 debug.sf.disable_backpressure=1
@@ -59,8 +65,6 @@ ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 ro.surface_flinger.max_virtual_display_dimension=4096
 ro.surface_flinger.protected_contents=true
 ro.surface_flinger.use_color_management=true
-ro.surface_flinger.vsync_event_phase_offset_ns=2000000
-ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
 ro.surface_flinger.wcg_composition_dataspace=143261696
 
 # Memory
@@ -95,10 +99,10 @@ persist.sys.wfd.virtual=0
 # NFC
 ro.nfc.port=I2C
 
-# Seamless transfer
-sys.fflag.override.settings_seamless_transfer=true
-
 # Fingerprint
-persist.vendor.sys.fp.fod.location.X_Y=455,1920
+persist.vendor.sys.fp.fod.location.X_Y=445,1910
 persist.vendor.sys.fp.fod.size.width_height=190,190
 ro.hardware.fp.fod=true
+
+# Seamless transfer
+sys.fflag.override.settings_seamless_transfer=true
