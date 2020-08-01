@@ -203,7 +203,11 @@ include device/qcom/sepolicy/sepolicy.mk
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/public
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
-#SELINUX_IGNORE_NEVERALLOWS := true
+
+# Ignore SELinux neverallows
+ifneq ($(TARGET_BUILD_VARIANT),user)
+  SELINUX_IGNORE_NEVERALLOWS := true
+endif
 
 # Treble
 PRODUCT_VENDOR_MOVE_ENABLED := true
