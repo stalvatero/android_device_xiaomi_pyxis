@@ -272,7 +272,6 @@ vendor/etc/hbtp/qtc800s_dsp.bin
 vendor/etc/hbtp/qtc801s.bin
 vendor/etc/hdr_config.cfg
 vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc
-vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.rc
 vendor/etc/init/android.hardware.drm@1.1-service.wfdhdcp.rc
 vendor/etc/init/android.hardware.drm@1.2-service.widevine.rc
 vendor/etc/init/android.hardware.gatekeeper@1.0-service-qti.rc
@@ -477,7 +476,6 @@ vendor/lib/hw/camera.qcom.so
 vendor/lib/hw/com.qti.chi.override.so
 vendor/lib/hw/consumerir.sdm710.so
 vendor/lib/hw/sound_trigger.primary.sdm710.so
-vendor/lib/hw/fingerprint.goodix_fod.so
 vendor/lib/hw/vendor.qti.esepowermanager@1.0-impl.so
 vendor/lib/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so
 vendor/lib/hw/vendor.qti.hardware.bluetooth_sar@1.0-impl.so
@@ -732,15 +730,9 @@ vendor/lib/rfsa/adsp/libsns_device_mode_skel.so
 vendor/lib/rfsa/adsp/libsns_low_lat_stream_skel.so
 vendor/lib/rfsa/adsp/tas2560_TI_0.bin
 vendor/lib/sensors.ssc.so
-vendor/lib/soundfx/libqcreverb.so
-vendor/lib/soundfx/libqcvirt.so
 vendor/lib/soundfx/libasphere.so
-vendor/lib/soundfx/libshoebox.so
-vendor/lib/soundfx/libqcbassboost.so
-vendor/lib/soundfx/libmisoundfx.so
 vendor/lib/soundfx/libdirac.so
 vendor/lib/vendor.qti.esepowermanager@1.0.so
-vendor/lib/vendor.qti.hardware.btconfigstore@1.0.so
 vendor/lib/vendor.qti.hardware.capabilityconfigstore@1.0.so
 vendor/lib/vendor.qti.hardware.cvp@1.0-halimpl.so
 vendor/lib/vendor.qti.hardware.cvp@1.0.so
@@ -1066,17 +1058,12 @@ vendor/lib64/qcrild_librilutils.so
 vendor/lib64/qtibus.so
 vendor/lib64/qtimutex.so
 vendor/lib64/sensors.ssc.so
-vendor/lib64/soundfx/libqcreverb.so
-vendor/lib64/soundfx/libqcvirt.so
 vendor/lib64/soundfx/libasphere.so
-vendor/lib64/soundfx/libshoebox.so
-vendor/lib64/soundfx/libqcbassboost.so
 vendor/lib64/soundfx/libdirac.so
 vendor/lib64/vendor.display.color@1.0.so
 vendor/lib64/vendor.display.color@1.1.so
 vendor/lib64/vendor.display.color@1.2.so
 vendor/lib64/vendor.display.postproc@1.0.so
-vendor/lib64/vendor.goodix.hardware.biometrics.fingerprint@2.1.so
 vendor/lib64/vendor.qti.data.factory@2.0.so
 vendor/lib64/vendor.qti.esepowermanager@1.0.so
 vendor/lib64/vendor.qti.gnss@1.0.so
@@ -1087,7 +1074,6 @@ vendor/lib64/vendor.qti.gnss@2.1.so
 vendor/lib64/vendor.qti.gnss@3.0-service.so
 vendor/lib64/vendor.qti.gnss@3.0.so
 vendor/lib64/vendor.qti.hardware.alarm@1.0.so
-vendor/lib64/vendor.qti.hardware.btconfigstore@1.0.so
 vendor/lib64/vendor.qti.hardware.cacert@1.0.so
 vendor/lib64/vendor.qti.hardware.capabilityconfigstore@1.0.so
 vendor/lib64/vendor.qti.hardware.cvp@1.0-halimpl.so
@@ -1170,3 +1156,7 @@ product/priv-app/HotwordEnrollmentXGoogleHEXAGON/HotwordEnrollmentXGoogleHEXAGON
 product/priv-app/dpmserviceapp/dpmserviceapp.apk
 product/priv-app/ims/ims.apk
 product/priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
+
+# FOD Calibration
+etc/goodix/BMatrix.so|28e9ff5f39e36b92ac3b7633b3847def8e6949e3
+etc/goodix/caliParamsInfo.so|95a4668aa54107250e416af070d9e93c6e3b243c
