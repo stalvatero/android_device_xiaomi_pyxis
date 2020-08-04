@@ -50,11 +50,15 @@ public:
     Return<void> setLongPressEnabled(bool enabled) override;
     Return<int32_t> getDimAmount(int32_t brightness) override;
     Return<bool> shouldBoostBrightness() override;
-    Return<void> setCallback(const sp<::vendor::lineage::biometrics::fingerprint::inscreen::V1_0::IFingerprintInscreenCallback>& callback) override;
+    Return<void> setCallback(const sp<IFingerprintInscreenCallback>& callback) override;
 
 private:
+    bool mFodCircleVisible;
     sp<IXiaomiFingerprint> xiaomiFingerprintService;
-    bool mPressed;
+
+    // android system properties
+    static constexpr const char* propFODOffset = "persist.vendor.sys.fp.fod.location.X_Y";
+    static constexpr const char* propFODSize = "persist.vendor.sys.fp.fod.size.width_height";
 };
 
 }  // namespace implementation
@@ -66,4 +70,3 @@ private:
 }  // namespace vendor
 
 #endif  // VENDOR_LINEAGE_BIOMETRICS_FINGERPRINT_INSCREEN_V1_0_FINGERPRINTINSCREEN_H
-
