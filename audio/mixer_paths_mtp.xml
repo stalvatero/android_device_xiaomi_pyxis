@@ -325,7 +325,6 @@
     <ctl name="PRIM_MI2S_TX Channels" value="Two" />
     <ctl name="PRIM_MI2S_TX Format" value="S24_LE" />
     <ctl name="PRIM_MI2S_TX SampleRate" value="KHZ_48" />
-    <ctl name="PRIM_MI2S_RX SampleRate" value="KHZ_48" />
 
     <!-- MUX controls -->
     <ctl name="DEC1 MUX" value="ZERO" />
@@ -2136,14 +2135,43 @@
     </path>
 
     <path name="speaker">
+        <ctl name="INT4_MI2S_RX Channels" value="Two" />
+        <ctl name="RX4 MIX1 INP1" value="RX4" />
+        <ctl name="RX5 MIX1 INP1" value="RX5" />
+        <ctl name="COMP1 Switch" value="1" />
+        <ctl name="COMP2 Switch" value="1" />
+        <ctl name="SpkrLeft COMP Switch" value="1" />
+        <ctl name="SpkrLeft BOOST Switch" value="1" />
+        <ctl name="SpkrLeft VISENSE Switch" value="1" />
+        <ctl name="SpkrLeft SWR DAC_Port Switch" value="1" />
+        <ctl name="SpkrRight COMP Switch" value="1" />
+        <ctl name="SpkrRight BOOST Switch" value="1" />
+        <ctl name="SpkrRight VISENSE Switch" value="1" />
+        <ctl name="SpkrRight SWR DAC_Port Switch" value="1" />
+        <ctl name="SpkrLeft WSA PA Mute" value="0" />
+        <ctl name="SpkrRight WSA PA Mute" value="0" />
     </path>
 
     <path name="speaker-mono">
-        <path name="speaker" />
+        <ctl name="INT4_MI2S_RX Channels" value="One" />
+        <ctl name="RX4 MIX1 INP1" value="RX4" />
+        <ctl name="COMP1 Switch" value="1" />
+        <ctl name="SpkrLeft COMP Switch" value="1" />
+        <ctl name="SpkrLeft BOOST Switch" value="1" />
+        <ctl name="SpkrLeft VISENSE Switch" value="1" />
+        <ctl name="SpkrLeft SWR DAC_Port Switch" value="1" />
+        <ctl name="SpkrLeft WSA PA Mute" value="0" />
     </path>
 
     <path name="speaker-mono-2">
-        <path name="speaker" />
+        <ctl name="INT4_MI2S_RX Channels" value="One" />
+        <ctl name="RX5 MIX1 INP1" value="RX4" />
+        <ctl name="COMP2 Switch" value="1" />
+        <ctl name="SpkrRight COMP Switch" value="1" />
+        <ctl name="SpkrRight BOOST Switch" value="1" />
+        <ctl name="SpkrRight VISENSE Switch" value="1" />
+        <ctl name="SpkrRight SWR DAC_Port Switch" value="1" />
+        <ctl name="SpkrRight WSA PA Mute" value="0" />
     </path>
 
     <path name="speaker-fluid">
