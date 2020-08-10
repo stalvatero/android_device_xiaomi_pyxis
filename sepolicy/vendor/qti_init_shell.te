@@ -1,0 +1,1 @@
+allow qti_init_shell panel_display_prop:property_service { set };
