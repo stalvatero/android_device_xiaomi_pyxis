@@ -8,3 +8,9 @@ type vendor_fp_prop, property_type;
 
 # Panel display property type
 type panel_display_prop, property_type;
+
+# Persist displayfeature type
+type persist_displayfeature_prop, property_type;
+
+# Render property
+type render_prop, property_type;
