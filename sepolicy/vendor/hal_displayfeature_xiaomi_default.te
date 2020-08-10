@@ -12,4 +12,4 @@ allow hal_displayfeature_xiaomi_default sysfs_leds:dir search;
 allow hal_displayfeature_xiaomi_default sysfs_leds:file { open read };
 allow hal_displayfeature_xiaomi_default vndbinder_device:chr_file { ioctl map open read write };
 
-get_prop(hal_displayfeature_xiaomi_default, persist_displayfeature_prop)
+get_prop(hal_displayfeature_xiaomi_default, vendor_displayfeature_prop)
