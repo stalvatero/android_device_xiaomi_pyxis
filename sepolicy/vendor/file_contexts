@@ -24,7 +24,7 @@
 /dev/vfsspi                                   u:object_r:fingerprint_device:s0
 
 # Fingerprint related nodes
-/sys/devices/virtual/touch/tp_dev/fod_status                       u:object_r:sysfs_fod:s0
+/sys/devices/virtual/touch/tp_dev/fod_status  u:object_r:sysfs_fod:s0
 
 # GPS devices
 /dev/bbd_control                              u:object_r:gps_device:s0
