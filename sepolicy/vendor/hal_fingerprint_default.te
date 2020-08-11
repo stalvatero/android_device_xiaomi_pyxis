@@ -1,3 +1,5 @@
+type hal_fingerprint_hwservice_xiaomi, hwservice_manager_type;
+
 allow hal_fingerprint_default fingerprint_device:chr_file rw_file_perms;
 allow hal_fingerprint_default fingerprint_data_file:dir create_dir_perms;
 allow hal_fingerprint_default fingerprint_data_file:file create_file_perms;
@@ -11,3 +13,5 @@ hal_client_domain(hal_fingerprint_default, hal_perf)
 
 # Ignore all logging requests
 dontaudit hal_fingerprint storage_file:dir search;
+
+add_hwservice(hal_fingerprint_default, hal_fingerprint_hwservice_xiaomi)
