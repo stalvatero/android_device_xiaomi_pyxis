@@ -55,10 +55,6 @@ public:
 private:
     bool mFodCircleVisible;
     sp<IXiaomiFingerprint> xiaomiFingerprintService;
-
-    // android system properties
-    static constexpr const char* propFODOffset = "persist.vendor.sys.fp.fod.location.X_Y";
-    static constexpr const char* propFODSize = "persist.vendor.sys.fp.fod.size.width_height";
 };
 
 }  // namespace implementation
