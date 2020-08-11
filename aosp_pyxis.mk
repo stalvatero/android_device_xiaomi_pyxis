@@ -5,8 +5,15 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+DEVICE_PATH := device/xiaomi/pyxis
+WITH_GAPPS := true
+TARGET_GAPPS_ARCH := arm64
+TARGET_APPS_ARCH := arm64
+TARGET_INCLUDE_STOCK_ARCORE := true
+TARGET_SUPPORTS_GOOGLE_RECORDER := true
+
 # Inherit from pyxis device
-$(call inherit-product, device/xiaomi/pyxis/device.mk)
+$(call inherit-product, $(DEVICE_PATH)/device.mk)
 
 # Inherit some common PixelExperience stuff.
 $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
