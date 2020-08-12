@@ -39,8 +39,6 @@
 #define FOD_STATUS_ON 1
 #define FOD_STATUS_OFF 0
 
-#define FOD_UI_PATH "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui"
-
 #define FOD_ERROR 8
 #define FOD_ERROR_VENDOR 6
 
@@ -91,7 +89,7 @@ FingerprintInscreen::FingerprintInscreen() {
     xiaomiFingerprintService = IXiaomiFingerprint::getService();
 
     std::thread([this]() {
-        int fd = open(FOD_UI_PATH, O_RDONLY);
+        int fd = open(DISPPARAM_PATH, O_RDONLY);
         if (fd < 0) {
             LOG(ERROR) << "failed to open fd, err: " << fd;
             return;
