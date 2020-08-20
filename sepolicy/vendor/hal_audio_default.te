@@ -8,4 +8,6 @@ allow hal_audio_default audio_socket:sock_file rw_file_perms;
 allow hal_audio_default persist_file:lnk_file read;
 allow hal_audio_default sysfs:dir {read open getattr};
 
+allow hal_audio_default default_prop:file { read };
+
 dontaudit hal_audio_default sysfs:dir read;
