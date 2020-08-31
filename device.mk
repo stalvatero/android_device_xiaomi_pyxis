@@ -203,8 +203,7 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     libvulkan \
     memtrack.sdm710 \
-    vendor.display.config@1.9 \
-    vendor.display.config@1.9.vendor \
+    vendor.display.config@1.11 \
     vendor.qti.hardware.display.allocator@1.0-service
 
 # Audio
