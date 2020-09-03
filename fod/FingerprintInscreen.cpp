@@ -19,6 +19,8 @@
 #include "FingerprintInscreen.h"
 
 #include <android-base/logging.h>
+#include <hardware_legacy/power.h>
+
 #include <fstream>
 #include <cmath>
 
@@ -37,10 +39,8 @@
 #define FINGERPRINT_ERROR_VENDOR 8
 
 #define FOD_SENSOR_X 455
-#define FOD_SENSOR_Y 1920
-#define FOD_SENSOR_SIZE 173
-
-#define BRIGHTNESS_PATH "/sys/class/backlight/panel0-backlight/brightness"
+#define FOD_SENSOR_Y 1910
+#define FOD_SENSOR_SIZE 190
 
 namespace {
 
@@ -142,9 +142,9 @@ Return<void> FingerprintInscreen::setLongPressEnabled(bool) {
     return Void();
 }
 
-Return<int32_t> FingerprintInscreen::getDimAmount(int32_t /*brightness*/) {
-    int realBrightness = get(BRIGHTNESS_PATH, 0);
+Return<int32_t> FingerprintInscreen::getDimAmount(int32_t brightness) {
     float alpha;
+    int realBrightness = brightness * 2047 / 255;
 
     if (realBrightness > 500) {
         alpha = 1.0 - pow(realBrightness / 2047.0 * 430.0 / 600.0, 0.455);
