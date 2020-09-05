@@ -25,22 +25,27 @@
 #include <cmath>
 
 #define COMMAND_NIT 10
-#define PARAM_NIT_FOD 1
+#define PARAM_NIT_FOD 3
 #define PARAM_NIT_NONE 0
 
-#define DISPPARAM_PATH "/sys/devices/platform/soc/ae00000.qcom,mdss_mdp/drm/card0/card0-DSI-1/disp_param"
-#define DISPPARAM_HBM_FOD_ON "0x20000"
-#define DISPPARAM_HBM_FOD_OFF "0xE0000"
+#define DISPPARAM_PATH "/sys/class/drm/card0-DSI-1/disp_param"
+#define DISPPARAM_FOD_BACKLIGHT_HBM "0x20000"
+#define DISPPARAM_FOD_BACKLIGHT_RESET "0xE0000"
 
 #define FOD_STATUS_PATH "/sys/devices/virtual/touch/tp_dev/fod_status"
 #define FOD_STATUS_ON 1
 #define FOD_STATUS_OFF 0
 
-#define FINGERPRINT_ERROR_VENDOR 8
+#define FOD_ERROR 8
+#define FOD_ERROR_VENDOR 6
 
 #define FOD_SENSOR_X 455
-#define FOD_SENSOR_Y 1910
-#define FOD_SENSOR_SIZE 190
+#define FOD_SENSOR_Y 1920
+#define FOD_SENSOR_SIZE 174
+
+#define BRIGHTNESS_PATH "/sys/class/backlight/panel0-backlight/brightness"
+
+#define FINGERPRINT_ERROR_VENDOR 8
 
 namespace {
 
@@ -97,7 +102,7 @@ Return<void> FingerprintInscreen::onFinishEnroll() {
 Return<void> FingerprintInscreen::onPress() {
 
     if (!this->mPressed) {
-    	set(DISPPARAM_PATH, DISPPARAM_HBM_FOD_ON);
+    	set(DISPPARAM_PATH, DISPPARAM_FOD_BACKLIGHT_HBM);
     	xiaomiFingerprintService->extCmd(COMMAND_NIT, PARAM_NIT_FOD);
     	this->mPressed = true;
     }
@@ -107,7 +112,7 @@ Return<void> FingerprintInscreen::onPress() {
 
 Return<void> FingerprintInscreen::onRelease() {
 	if (this->mPressed) {
-    	set(DISPPARAM_PATH, DISPPARAM_HBM_FOD_OFF);
+    	set(DISPPARAM_PATH, DISPPARAM_FOD_BACKLIGHT_RESET);
     	xiaomiFingerprintService->extCmd(COMMAND_NIT, PARAM_NIT_NONE);
     	this->mPressed = false;
     }
@@ -123,7 +128,7 @@ Return<void> FingerprintInscreen::onShowFODView() {
 Return<void> FingerprintInscreen::onHideFODView() {
     xiaomiFingerprintService->extCmd(COMMAND_NIT, PARAM_NIT_NONE);
     set(FOD_STATUS_PATH, FOD_STATUS_OFF);
-    set(DISPPARAM_PATH, DISPPARAM_HBM_FOD_OFF);
+    set(DISPPARAM_PATH, DISPPARAM_FOD_BACKLIGHT_RESET);
 
     return Void();
 }
@@ -142,9 +147,9 @@ Return<void> FingerprintInscreen::setLongPressEnabled(bool) {
     return Void();
 }
 
-Return<int32_t> FingerprintInscreen::getDimAmount(int32_t brightness) {
+Return<int32_t> FingerprintInscreen::getDimAmount(int32_t /*brightness*/) {
+    int realBrightness = get(BRIGHTNESS_PATH, 0);
     float alpha;
-    int realBrightness = brightness * 2047 / 255;
 
     if (realBrightness > 500) {
         alpha = 1.0 - pow(realBrightness / 2047.0 * 430.0 / 600.0, 0.455);
