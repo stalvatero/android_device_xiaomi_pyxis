@@ -32,6 +32,11 @@
 /dev/bbd_sensor                               u:object_r:gps_device:s0
 /dev/ttyBCM                                   u:object_r:gps_device:s0
 
+# NFC
+/dev/pn54x                     u:object_r:nfc_device:s0
+/dev/pn553                     u:object_r:nfc_device:s0
+/dev/pn551                     u:object_r:nfc_device:s0
+
 # GPS nodes
 /sys/devices/platform/soc/[0-9]+\.spi/spi_master/spi[0-9]+/spi[0-9]+\.0/nstandby   u:object_r:sysfs_gps:s0
 
