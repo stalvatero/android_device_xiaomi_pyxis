@@ -497,11 +497,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     XiaomiPocketMode
 
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH) \
-    hardware/xiaomi
-
 # Security Patch Version
 BOOT_SECURITY_PATCH = $(PLATFORM_SECURITY_PATCH)
 VENDOR_SECURITY_PATCH = $(PLATFORM_SECURITY_PATCH)
