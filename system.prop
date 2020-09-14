@@ -96,6 +96,8 @@ ro.nfc.port=I2C
 
 # Fingerprint
 ro.hardware.fp.fod=true
+persist.vendor.sys.fp.fod.location.X_Y=445,1910
+persist.vendor.sys.fp.fod.size.width_height=190,190
 
 # Seamless transfer
 sys.fflag.override.settings_seamless_transfer=true
