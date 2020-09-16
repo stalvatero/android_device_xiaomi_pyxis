@@ -39,9 +39,9 @@
 #define FOD_ERROR 8
 #define FOD_ERROR_VENDOR 6
 
-#define FOD_SENSOR_X 455
-#define FOD_SENSOR_Y 1920
-#define FOD_SENSOR_SIZE 174
+#define FOD_SENSOR_X 445
+#define FOD_SENSOR_Y 1910
+#define FOD_SENSOR_SIZE 190
 
 #define BRIGHTNESS_PATH "/sys/class/backlight/panel0-backlight/brightness"
 
