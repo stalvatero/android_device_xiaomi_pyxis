@@ -1,8 +1,8 @@
 [
   {
-    "repository"  : "stalvatero/vendor_xiaomi_pyxis",
+    "repository"  : "MemeGang-Development/vendor_xiaomi_pyxis",
     "target_path" : "vendor/xiaomi/pyxis",
-    "branch"      : "pe+",
+    "branch"      : "master",
     "remote"      : "github"
   },
   {
