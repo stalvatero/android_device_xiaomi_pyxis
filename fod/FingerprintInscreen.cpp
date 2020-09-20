@@ -19,18 +19,19 @@
 #include "FingerprintInscreen.h"
 
 #include <android-base/logging.h>
+#include <android-base/properties.h>
 #include <hardware_legacy/power.h>
 
 #include <fstream>
 #include <cmath>
 
 #define COMMAND_NIT 10
-#define PARAM_NIT_FOD 3
+#define PARAM_NIT_630_FOD 1
 #define PARAM_NIT_NONE 0
 
 #define DISPPARAM_PATH "/sys/class/drm/card0-DSI-1/disp_param"
-#define DISPPARAM_FOD_BACKLIGHT_HBM "0x20000"
-#define DISPPARAM_FOD_BACKLIGHT_RESET "0xE0000"
+#define DISPPARAM_HBM_FOD_ON "0x20000"
+#define DISPPARAM_HBM_FOD_OFF "0xE0000"
 
 #define FOD_STATUS_PATH "/sys/devices/virtual/touch/tp_dev/fod_status"
 #define FOD_STATUS_ON 1
@@ -45,9 +46,13 @@
 
 #define BRIGHTNESS_PATH "/sys/class/backlight/panel0-backlight/brightness"
 
-#define FINGERPRINT_ERROR_VENDOR 8
-
-namespace {
+namespace vendor {
+namespace lineage {
+namespace biometrics {
+namespace fingerprint {
+namespace inscreen {
+namespace V1_0 {
+namespace implementation {
 
 template <typename T>
 static T get(const std::string& path, const T& def) {
@@ -63,32 +68,62 @@ static void set(const std::string& path, const T& value) {
     file << value;
 }
 
-} // anonymous namespace
-
-namespace vendor {
-namespace lineage {
-namespace biometrics {
-namespace fingerprint {
-namespace inscreen {
-namespace V1_0 {
-namespace implementation {
-
+using ::android::base::GetProperty;
 
 FingerprintInscreen::FingerprintInscreen() {
+    this->mFodCircleVisible = false;
     xiaomiFingerprintService = IXiaomiFingerprint::getService();
-    this->mPressed = false;
 }
 
 Return<int32_t> FingerprintInscreen::getPositionX() {
-    return FOD_SENSOR_X;
+    int result;
+    std::string vOff = GetProperty(propFODOffset, "");
+
+    if (vOff.length() < 3) {
+        return FOD_SENSOR_X;
+    }
+
+    result = std::stoi(vOff.substr(0, vOff.find(",")));
+    if (result < 1) {
+        return FOD_SENSOR_X;
+    }
+
+    return result;
 }
 
 Return<int32_t> FingerprintInscreen::getPositionY() {
-    return FOD_SENSOR_Y;
+    int result;
+    std::string vOff = GetProperty(propFODOffset, "");
+
+    if (vOff.length() < 3) {
+        return FOD_SENSOR_Y;
+    }
+
+    result = std::stoi(vOff.substr(vOff.find(",") + 1));
+    if (result < 1) {
+        return FOD_SENSOR_Y;
+    }
+
+    return result;
 }
 
 Return<int32_t> FingerprintInscreen::getSize() {
-    return FOD_SENSOR_SIZE;
+    int result, propW, propH;
+    std::string vSize = GetProperty(propFODSize, "");
+
+    if (vSize.length() < 7) {
+        return FOD_SENSOR_SIZE;
+    }
+
+    propW = std::stoi(vSize.substr(0, vSize.find(",")));
+    propH = std::stoi(vSize.substr(vSize.find(",") +1));
+
+    result = fmax(propW, propH);
+    if (result < 1) {
+        return FOD_SENSOR_SIZE;
+    }
+
+    return result;
 }
 
 Return<void> FingerprintInscreen::onStartEnroll() {
@@ -100,54 +135,69 @@ Return<void> FingerprintInscreen::onFinishEnroll() {
 }
 
 Return<void> FingerprintInscreen::onPress() {
-
-    if (!this->mPressed) {
-    	set(DISPPARAM_PATH, DISPPARAM_FOD_BACKLIGHT_HBM);
-    	xiaomiFingerprintService->extCmd(COMMAND_NIT, PARAM_NIT_FOD);
-    	this->mPressed = true;
-    }
-
+    acquire_wake_lock(PARTIAL_WAKE_LOCK, LOG_TAG);
+    set(DISPPARAM_PATH, DISPPARAM_HBM_FOD_ON);
+    xiaomiFingerprintService->extCmd(COMMAND_NIT, PARAM_NIT_630_FOD);
     return Void();
 }
 
 Return<void> FingerprintInscreen::onRelease() {
-	if (this->mPressed) {
-    	set(DISPPARAM_PATH, DISPPARAM_FOD_BACKLIGHT_RESET);
-    	xiaomiFingerprintService->extCmd(COMMAND_NIT, PARAM_NIT_NONE);
-    	this->mPressed = false;
-    }
-
+    release_wake_lock(LOG_TAG);
+    set(DISPPARAM_PATH, DISPPARAM_HBM_FOD_OFF);
+    xiaomiFingerprintService->extCmd(COMMAND_NIT, PARAM_NIT_NONE);
     return Void();
 }
 
 Return<void> FingerprintInscreen::onShowFODView() {
     set(FOD_STATUS_PATH, FOD_STATUS_ON);
+    this->mFodCircleVisible = true;
     return Void();
 }
 
 Return<void> FingerprintInscreen::onHideFODView() {
-    xiaomiFingerprintService->extCmd(COMMAND_NIT, PARAM_NIT_NONE);
+    set(DISPPARAM_PATH, DISPPARAM_HBM_FOD_OFF);
     set(FOD_STATUS_PATH, FOD_STATUS_OFF);
-    set(DISPPARAM_PATH, DISPPARAM_FOD_BACKLIGHT_RESET);
-
+    this->mFodCircleVisible = false;
     return Void();
 }
 
 Return<bool> FingerprintInscreen::handleAcquired(int32_t acquiredInfo, int32_t vendorCode) {
-    LOG(INFO) << "acquiredInfo: " << acquiredInfo << ", vendorCode: " << vendorCode;
+    std::lock_guard<std::mutex> _lock(mCallbackLock);
+    if (mCallback == nullptr) {
+        return false;
+    }
+
+    if (acquiredInfo == 6) {
+        if (vendorCode == 22) {
+            Return<void> ret = mCallback->onFingerDown();
+            if (!ret.isOk()) {
+                LOG(ERROR) << "FingerDown() error: " << ret.description();
+            }
+            return true;
+        }
+
+        if (vendorCode == 23) {
+            Return<void> ret = mCallback->onFingerUp();
+            if (!ret.isOk()) {
+                LOG(ERROR) << "FingerUp() error: " << ret.description();
+            }
+            return true;
+        }
+    }
+    LOG(ERROR) << "acquiredInfo: " << acquiredInfo << ", vendorCode: " << vendorCode << "\n";
     return false;
 }
 
 Return<bool> FingerprintInscreen::handleError(int32_t error, int32_t vendorCode) {
-    LOG(ERROR) << "error: " << error << ", vendorCode: " << vendorCode;
-    return error == FINGERPRINT_ERROR_VENDOR && vendorCode == 6;
+    LOG(ERROR) << "error: " << error << ", vendorCode: " << vendorCode << "\n";
+    return error == FOD_ERROR && vendorCode == FOD_ERROR_VENDOR;
 }
 
 Return<void> FingerprintInscreen::setLongPressEnabled(bool) {
     return Void();
 }
 
-Return<int32_t> FingerprintInscreen::getDimAmount(int32_t /*brightness*/) {
+Return<int32_t> FingerprintInscreen::getDimAmount(int32_t /* brightness */) {
     int realBrightness = get(BRIGHTNESS_PATH, 0);
     float alpha;
 
@@ -165,7 +215,10 @@ Return<bool> FingerprintInscreen::shouldBoostBrightness() {
 }
 
 Return<void> FingerprintInscreen::setCallback(const sp<IFingerprintInscreenCallback>& callback) {
-    (void) callback;
+    {
+        std::lock_guard<std::mutex> _lock(mCallbackLock);
+        mCallback = callback;
+    }
     return Void();
 }
 
