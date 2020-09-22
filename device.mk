@@ -411,7 +411,6 @@ PRODUCT_PACKAGES += \
     SecureElement \
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/nfc/libese-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libese-nxp.conf \
     $(LOCAL_PATH)/configs/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/libnfc-nci.conf \
     $(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf \
     $(LOCAL_PATH)/configs/nfc/libnfc-nxp_default.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/libnfc-nxp_default.conf \
