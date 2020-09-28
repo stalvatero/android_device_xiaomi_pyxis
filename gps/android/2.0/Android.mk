@@ -57,7 +57,6 @@ LOCAL_SHARED_LIBRARIES := \
     android.hardware.gnss.visibility_control@1.0 \
     android.hardware.health@1.0 \
     android.hardware.health@2.0 \
-    android.hardware.power@1.2 \
     android.hardware.power@1.3 \
     libbase
 

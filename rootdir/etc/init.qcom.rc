@@ -88,11 +88,6 @@ on post-fs
 on late-fs
     mount_all /vendor/etc/fstab.qcom --late
 
-    # Change permission for dumpstate
-    chmod 0664 /sys/kernel/wlan/power_stats
-    chmod 0664 sys/power/system_sleep/stats
-    chmod 0664 /sys/power/rpmh_stats/master_stats
-
 on early-boot
     # Set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
