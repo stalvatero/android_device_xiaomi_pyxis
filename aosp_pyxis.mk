@@ -29,8 +29,17 @@ PRODUCT_MODEL :=  MI 9 Lite
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_NAME := aosp_pyxis
 
+BUILD_FINGERPRINT := "google/coral/coral:11/RP1A.200720.009/6720564:user/release-keys"
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRIVATE_BUILD_DESC="pyxis-user 10 QKQ1.190828.002 V12.0.3.0.QFCMIXM release-keys" \
+    PRODUCT_NAME="sirius"
+
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="pyxis" \
     TARGET_DEVICE="pyxis"
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
+
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.build.fingerprint=$(BUILD_FINGERPRINT)

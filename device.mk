@@ -166,7 +166,7 @@ PRODUCT_PACKAGES += \
 # FOD Fingerprint - All about it
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml \
-    $(LOCAL_PATH)/fingerprint/vendor.lineage.biometrics.fingerprint.inscreen.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/vendor.lineage.biometrics.fingerprint.inscreen.xml
+    $(LOCAL_PATH)/fod/vendor.lineage.biometrics.fingerprint.inscreen.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/vendor.lineage.biometrics.fingerprint.inscreen.xml
 
 PRODUCT_PACKAGES += \
     vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_pyxis \
@@ -179,10 +179,6 @@ PRODUCT_PACKAGES += \
 # Crypto
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.cryptfshw@1.0-service-qti.qsee
-
-# Recovery
-PRODUCT_PACKAGES += \
-    librecovery_updater_xiaomi
 
 # Display
 PRODUCT_PACKAGES += \
