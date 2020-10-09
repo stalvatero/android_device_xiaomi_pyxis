@@ -21,6 +21,12 @@
     "remote"      : "github"
   },
   {
+     "repository": "kdrag0n/proton-clang",
+     "target_path": "prebuilts/clang/host/linux-x86/clang-proton",
+     "branch": "master",
+     "remote": "github"
+  },
+  {
     "repository": "packages_apps_PixelLiveWallpaper",
     "target_path": "packages/apps/PixelLiveWallpaper",
     "branch": "ten",
