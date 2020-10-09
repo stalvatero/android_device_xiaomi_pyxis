@@ -61,7 +61,3 @@ endif
 
 # Inherit from the proprietary version
 -include vendor/xiaomi/pyxis/BoardConfigVendor.mk
-
-
-# To Verify
-TARGET_COPY_OUT_PRODUCT := system/product

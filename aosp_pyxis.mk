@@ -33,7 +33,7 @@ BUILD_FINGERPRINT := "google/coral/coral:11/RP1A.200720.009/6720564:user/release
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="pyxis-user 10 QKQ1.190828.002 V12.0.3.0.QFCMIXM release-keys" \
-    PRODUCT_NAME="sirius"
+    PRODUCT_NAME="pyxis"
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="pyxis" \

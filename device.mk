@@ -113,10 +113,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     PixelLiveWallpaperPrebuilt
 
-# XiaomiParts
-PRODUCT_PACKAGES += \
-    XiaomiParts
-
-# XiaomiPocketMode
+# Xiaomi PocketMode
 PRODUCT_PACKAGES += \
     XiaomiPocketMode
