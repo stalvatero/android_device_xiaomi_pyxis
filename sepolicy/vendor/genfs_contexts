@@ -1,6 +1,3 @@
-genfscon proc /tp_fw_version       u:object_r:proc_tp:s0
-genfscon proc /tp_lockdown_info    u:object_r:proc_tp:s0
-
 genfscon sysfs /devices/platform/soc/17300000.qcom,lpass/subsys4/restart_level u:object_r:sysfs_ssr_toggle:s0
 genfscon sysfs /devices/platform/soc/188101c.qcom,spss/subsys0/restart_level   u:object_r:sysfs_ssr_toggle:s0
 genfscon sysfs /devices/platform/soc/4080000.qcom,mss/subsys7/restart_level    u:object_r:sysfs_ssr_toggle:s0

@@ -1,3 +1,4 @@
+type persist_sensors_prop, property_type;
 allow hal_sensors_default sensors_dbg_prop:file {read open getattr};
 allow hal_sensors_default fwk_scheduler_hwservice:hwservice_manager find;
 allow hal_sensors_default input_device:dir r_dir_perms;
