@@ -1,18 +1,18 @@
 #
-# Copyright (C) 2020 The LineageOS Project
+# Copyright (C) 2018-2020 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_p.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # Get non-open-source specific aspects
 $(call inherit-product-if-exists, vendor/xiaomi/pyxis/pyxis-vendor.mk)
 
-# Inherit from sdm710-common
-$(call inherit-product, device/xiaomi/sdm710-common/sdm710.mk)
+# Firmware
+$(call inherit-product, vendor/xiaomi-firmware/pyxis/firmware.mk)
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2340
@@ -22,22 +22,21 @@ TARGET_SCREEN_WIDTH := 1080
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay
 
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH) \
-    hardware/xiaomi
-
-# Screen density
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-
-# Treble
-PRODUCT_USE_VNDK_OVERRIDE := true
 
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.consumerir.xml \
     frameworks/native/data/etc/android.hardware.sensor.hifi_sensors.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.hifi_sensors.xml
+
+# Screen density
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+
+# Inherit from sdm710-common
+$(call inherit-product, device/xiaomi/sdm710-common/sdm710.mk)
+
+# Treble
+PRODUCT_USE_VNDK_OVERRIDE := true
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -55,23 +54,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.target.rc
 
-# FM
-# PRODUCT_PACKAGES += \
-#     FM2 \
-#     libqcomfm_jni \
-#     qcom.fmradio
+# Fingerprint
+PRODUCT_PACKAGES += \
+    android.hardware.biometrics.fingerprint@2.1-service.xiaomi_pyxis \
+	vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_pyxis
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/fod/vendor.lineage.biometrics.fingerprint.inscreen.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/vendor.lineage.biometrics.fingerprint.inscreen.xml
 
 # GPS
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/gps_debug.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/gps_debug.conf
-
-# FOD Fingerprint - All about it
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/fod/vendor.lineage.biometrics.fingerprint.inscreen.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/vendor.lineage.biometrics.fingerprint.inscreen.xml
-
-PRODUCT_PACKAGES += \
-    vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.xiaomi_pyxis \
-    android.hardware.biometrics.fingerprint@2.1-service.xiaomi_pyxis
 
 # Input
 PRODUCT_COPY_FILES += \
@@ -116,3 +109,9 @@ PRODUCT_PACKAGES += \
 # Xiaomi PocketMode
 PRODUCT_PACKAGES += \
     XiaomiPocketMode
+
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    $(LOCAL_PATH) \
+    hardware/xiaomi
+

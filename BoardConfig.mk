@@ -1,18 +1,7 @@
 #
-# Copyright 2019 The Android Open Source Project
-# Copyright 2019 Paranoid Android
+# Copyright (C) 2018-2020 The LineageOS Project
 #
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# SPDX-License-Identifier: Apache-2.0
 #
 
 # Inherit from sdm710-common
@@ -37,12 +26,13 @@ BOARD_HAVE_QCOM_FM := true
 TARGET_SURFACEFLINGER_FOD_LIB := //$(DEVICE_PATH):libfod_extension.xiaomi_pyxis
 
 # HIDL
-DEVICE_FRAMEWORK_MANIFEST_FILE := $(DEVICE_PATH)/framework_manifest.xml
-DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
+DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 
 # Kernel
-BOARD_KERNEL_SEPARATED_DTBO := true
 TARGET_KERNEL_CONFIG := pyxis_defconfig
+
+# Partitions
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
@@ -59,5 +49,5 @@ ifneq ($(TARGET_BUILD_VARIANT),user)
   SELINUX_IGNORE_NEVERALLOWS := true
 endif
 
-# Inherit from the proprietary version
+# Inherit from the proprietary stuffs
 -include vendor/xiaomi/pyxis/BoardConfigVendor.mk

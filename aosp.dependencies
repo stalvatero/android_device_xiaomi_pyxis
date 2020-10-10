@@ -9,6 +9,12 @@
    "branch"       : "ten"
   },
   {
+    "repository": "packages_apps_PixelLiveWallpaper",
+    "target_path": "packages/apps/PixelLiveWallpaper",
+    "branch": "ten",
+    "remote": "pixel-gitlab"
+  },
+  {
     "repository"  : "stalvatero/vendor_xiaomi_pyxis",
     "target_path" : "vendor/xiaomi/pyxis",
     "branch"      : "master",
@@ -27,9 +33,9 @@
      "remote": "github"
   },
   {
-    "repository": "packages_apps_PixelLiveWallpaper",
-    "target_path": "packages/apps/PixelLiveWallpaper",
+    "repository": "vendor_xiaomi-firmware",
+    "target_path": "vendor/xiaomi-firmware",
     "branch": "ten",
-    "remote": "pixel-gitlab"
+    "remote": "pixel-devices-blobs"
   }
 ]
