@@ -4,26 +4,15 @@
     "target_path" : "hardware/xiaomi"
   },
   {
-   "repository"   : "stalvatero/device_xiaomi_sdm710-common",
-   "target_path"  : "device/xiaomi/sdm710-common",
-   "branch"       : "ten"
-  },
-  {
-    "repository": "packages_apps_PixelLiveWallpaper",
-    "target_path": "packages/apps/PixelLiveWallpaper",
-    "branch": "ten",
-    "remote": "pixel-gitlab"
-  },
-  {
     "repository"  : "stalvatero/vendor_xiaomi_pyxis",
     "target_path" : "vendor/xiaomi/pyxis",
     "branch"      : "master",
     "remote"      : "github"
   },
   {
-    "repository"  : "SDM710-Development/android_kernel_xiaomi_sdm710",
+    "repository"  : "stalvatero/android_kernel_xiaomi_sdm710",
     "target_path" : "kernel/xiaomi/sdm710",
-    "branch"      : "10.0-caf",
+    "branch"      : "patch-1",
     "remote"      : "github"
   },
   {
@@ -33,9 +22,9 @@
      "remote": "github"
   },
   {
-    "repository": "vendor_xiaomi-firmware",
-    "target_path": "vendor/xiaomi-firmware",
+    "repository": "packages_apps_PixelLiveWallpaper",
+    "target_path": "packages/apps/PixelLiveWallpaper",
     "branch": "ten",
-    "remote": "pixel-devices-blobs"
+    "remote": "pixel-gitlab"
   }
 ]

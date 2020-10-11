@@ -1,3 +1,6 @@
+binder_call(system_server, glgps)
+allow system_server sysfs_rtc:file r_file_perms;
+
 allow system_server persist_camera_prop:file {open read getattr};
 
 allow system_server camera_prop:file {open read getattr};
