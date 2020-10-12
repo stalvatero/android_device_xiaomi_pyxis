@@ -19,6 +19,9 @@ BOARD_VENDOR := xiaomi
 
 DEVICE_PATH := device/xiaomi/pyxis
 
+# Compile libhwui in performance mode
+HWUI_COMPILE_FOR_PERF := true
+
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
@@ -72,7 +75,6 @@ BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom androidboot.console=ttyMSM0
 BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=a600000.dwc3
 BOARD_KERNEL_CMDLINE += service_locator.enable=1
 BOARD_KERNEL_CMDLINE += loop.max_part=16
-#BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_SEPARATED_DTBO := true
@@ -95,7 +97,6 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 TARGET_USE_QTI_BT_STACK := true
 BOARD_HAS_QCA_FM_SOC := "cherokee"
 BOARD_HAVE_QCOM_FM := true
-AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
 
 # Camera
 TARGET_USES_QTI_CAMERA_DEVICE := true
@@ -129,6 +130,9 @@ TARGET_USES_HWC2 := true
 TARGET_USES_QCOM_DISPLAY_BSP := true
 TARGET_USES_COLOR_METADATA := true
 TARGET_USES_DRM_PP := true
+
+# LMKD
+TARGET_LMKD_STATS_LOG := true
 
 # Media
 TARGET_USES_ION := true
@@ -226,7 +230,6 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
-# BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --set_hashtree_disabled_flag
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2
 
 # Inherit from the proprietary version
