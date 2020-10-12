@@ -18,10 +18,6 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # Get non-open-source specific aspects
 $(call inherit-product-if-exists, vendor/xiaomi/pyxis/pyxis-vendor.mk)
 
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
@@ -196,7 +192,8 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     libvulkan \
     memtrack.sdm710 \
-    vendor.display.config@1.11 \
+    vendor.display.config@1.9 \
+    vendor.display.config@1.9.vendor \
     vendor.qti.hardware.display.allocator@1.0-service
 
 # Audio
@@ -365,8 +362,7 @@ PRODUCT_COPY_FILES += \
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH) \
-    hardware/xiaomi
+    $(LOCAL_PATH)
 
 # IRQ
 PRODUCT_COPY_FILES += \
