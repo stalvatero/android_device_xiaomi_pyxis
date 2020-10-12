@@ -1,18 +1,14 @@
 [
   {
-    "repository": "android_hardware_xiaomi",
-    "target_path": "hardware/xiaomi"
-  },
-  {
-    "repository"  : "MemeGang-Development/vendor_xiaomi_pyxis",
+    "repository"  : "stalvatero/vendor_xiaomi_pyxis",
     "target_path" : "vendor/xiaomi/pyxis",
     "branch"      : "master",
     "remote"      : "github"
   },
   {
-    "repository"  : "SDM710-Development/android_kernel_xiaomi_sdm710",
+    "repository"  : "stalvatero/android_kernel_xiaomi_sdm710",
     "target_path" : "kernel/xiaomi/sdm710",
-    "branch"      : "10.0-caf",
+    "branch"      : "patch-1",
     "remote"      : "github"
   },
   {
