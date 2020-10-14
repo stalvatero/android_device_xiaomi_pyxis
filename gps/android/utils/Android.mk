@@ -23,7 +23,7 @@ LOCAL_SHARED_LIBRARIES := \
     libutils \
     android.hardware.health@1.0 \
     android.hardware.health@2.0 \
-    android.hardware.power@1.3 \
+    android.hardware.power@1.2 \
     libbase
 
 LOCAL_HEADER_LIBRARIES := \
