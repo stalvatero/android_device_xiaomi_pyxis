@@ -144,7 +144,7 @@ ro.vendor.audio.soundtrigger.training.level=60
 ro.vendor.audio.soundtrigger.hist.duration=1500
 
 # RCS
-persist.rcs.supported=1
+persist.rcs.supported=0
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
