@@ -10,6 +10,7 @@ ro.config.vc_call_vol_steps=7
 persist.bluetooth.bqr.event_mask=14
 persist.bluetooth.bqr.min_interval_ms=500
 vendor.bluetooth.soc=cherokee
+vendor.qcom.bluetooth.soc=cherokee
 
 # Camera
 camera.disable_zsl_mode=true
@@ -40,12 +41,12 @@ debug.egl.hw=1
 debug.sf.hw=1
 debug.mdpcomp.logs=0
 debug.gralloc.enable_fb_ubwc=1
-debug.hwui.renderer=skiavk
+debug.hwui.renderer=opengl
 persist.demo.hdmirotationlock=false
 persist.hwc.enable_vds=1
 debug.sf.disable_backpressure=1
 debug.sf.early_app_phase_offset_ns=500000
-debug.sf.early_gl_app_phase_offset_ns=15000000
+debug.sf.early_gl_app_phase_offset_ns=1500000
 debug.sf.early_gl_phase_offset_ns=3000000
 debug.sf.early_phase_offset_ns=500000
 debug.sf.enable_hwc_vds=1
@@ -94,9 +95,9 @@ persist.sys.wfd.virtual=0
 ro.nfc.port=I2C
 
 # Fingerprint
+ro.hardware.fp.fod=true
 persist.vendor.sys.fp.fod.location.X_Y=445,1910
 persist.vendor.sys.fp.fod.size.width_height=190,190
-ro.hardware.fp.fod=true
 
 # Seamless transfer
 sys.fflag.override.settings_seamless_transfer=true

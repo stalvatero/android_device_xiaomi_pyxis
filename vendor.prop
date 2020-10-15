@@ -92,13 +92,14 @@ vendor.audio.use.sw.ape.decoder=true
 vendor.voice.path.for.pcm.voip=true
 
 # Bluetooth
-persist.bluetooth.a2dp_offload.cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
 persist.bluetooth.a2dp_offload.disabled=false
+persist.bluetooth.a2dp_offload.cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
 persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
 persist.vendor.bt.aac_frm_ctl.enabled=true
 persist.vendor.bt.enable.splita2dp=true
 persist.vendor.qcom.bluetooth.enable.splita2dp=true
 persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
+persist.vendor.qcom.bluetooth.aac_frm_ctl.enabled=true
 ro.bluetooth.a2dp_offload.supported=true
 vendor.qcom.bluetooth.soc=cherokee
 
@@ -143,10 +144,7 @@ ro.vendor.audio.soundtrigger.training.level=60
 ro.vendor.audio.soundtrigger.hist.duration=1500
 
 # RCS
-persist.rcs.supported=1
-
-# Fwk detect
-ro.vendor.qti.va_aosp.support=1
+persist.rcs.supported=0
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
@@ -190,6 +188,9 @@ telephony.lteOnCdmaDevice=1
 # FM
 vendor.hw.fm.init=0
 ro.vendor.fm.use_audio_session=true
+
+# Fwk detect
+ro.vendor.qti.va_aosp.support=1
 
 # Time
 persist.vendor.delta_time.enable=true

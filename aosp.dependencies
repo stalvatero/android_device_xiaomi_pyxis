@@ -2,13 +2,13 @@
   {
     "repository"  : "stalvatero/vendor_xiaomi_pyxis",
     "target_path" : "vendor/xiaomi/pyxis",
-    "branch"      : "master-pe",
+    "branch"      : "master",
     "remote"      : "github"
   },
   {
-    "repository"  : "MemeGang-Development/HentaiKremul",
-    "target_path" : "kernel/xiaomi/pyxis",
-    "branch"      : "AkenoHimejima",
+    "repository"  : "stalvatero/android_kernel_xiaomi_sdm710",
+    "target_path" : "kernel/xiaomi/sdm710",
+    "branch"      : "patch-1",
     "remote"      : "github"
   },
   {

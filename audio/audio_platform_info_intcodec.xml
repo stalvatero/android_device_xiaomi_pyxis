@@ -104,7 +104,8 @@
         <device name="SND_DEVICE_OUT_USB_HEADPHONES" acdb_id="10012"/>
         <device name="SND_DEVICE_IN_USB_REALIME_LOOPBACK_MIC" acdb_id="10019"/>
         <device name="SND_DEVICE_OUT_USB_HEADSET_KARA" acdb_id="10020"/>
-
+        <device name="SND_DEVICE_OUT_TRANSMISSION_FM" acdb_id="0"/>
+        <device name="SND_DEVICE_IN_CAPTURE_FM" acdb_id="0"/>
     </acdb_ids>
     <backend_names>
         <device name="SND_DEVICE_OUT_HEADPHONES" backend="headphones" interface="INT0_MI2S_RX"/>

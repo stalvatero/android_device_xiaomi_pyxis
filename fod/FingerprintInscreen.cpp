@@ -19,7 +19,7 @@
 #include "FingerprintInscreen.h"
 
 #include <android-base/logging.h>
-#include <android-base/properties.h>
+#include <hardware_legacy/power.h>
 
 #include <fstream>
 #include <cmath>
@@ -39,9 +39,9 @@
 #define FOD_ERROR 8
 #define FOD_ERROR_VENDOR 6
 
-#define FOD_SENSOR_X 455
-#define FOD_SENSOR_Y 1920
-#define FOD_SENSOR_SIZE 173
+#define FOD_SENSOR_X 445
+#define FOD_SENSOR_Y 1910
+#define FOD_SENSOR_SIZE 190
 
 #define BRIGHTNESS_PATH "/sys/class/backlight/panel0-backlight/brightness"
 
@@ -67,62 +67,21 @@ static void set(const std::string& path, const T& value) {
     file << value;
 }
 
-using ::android::base::GetProperty;
-
 FingerprintInscreen::FingerprintInscreen() {
     this->mFodCircleVisible = false;
     xiaomiFingerprintService = IXiaomiFingerprint::getService();
 }
 
 Return<int32_t> FingerprintInscreen::getPositionX() {
-    int result;
-    std::string vOff = GetProperty(propFODOffset, "");
-
-    if (vOff.length() < 3) {
-        return FOD_SENSOR_X;
-    }
-
-    result = std::stoi(vOff.substr(0, vOff.find(",")));
-    if (result < 1) {
-        return FOD_SENSOR_X;
-    }
-
-    return result;
+    return FOD_SENSOR_X;
 }
 
 Return<int32_t> FingerprintInscreen::getPositionY() {
-    int result;
-    std::string vOff = GetProperty(propFODOffset, "");
-
-    if (vOff.length() < 3) {
-        return FOD_SENSOR_Y;
-    }
-
-    result = std::stoi(vOff.substr(vOff.find(",") + 1));
-    if (result < 1) {
-        return FOD_SENSOR_Y;
-    }
-
-    return result;
+    return FOD_SENSOR_Y;
 }
 
 Return<int32_t> FingerprintInscreen::getSize() {
-    int result, propW, propH;
-    std::string vSize = GetProperty(propFODSize, "");
-
-    if (vSize.length() < 7) {
-        return FOD_SENSOR_SIZE;
-    }
-
-    propW = std::stoi(vSize.substr(0, vSize.find(",")));
-    propH = std::stoi(vSize.substr(vSize.find(",") +1));
-
-    result = fmax(propW, propH);
-    if (result < 1) {
-        return FOD_SENSOR_SIZE;
-    }
-    
-    return result;
+    return FOD_SENSOR_SIZE;
 }
 
 Return<void> FingerprintInscreen::onStartEnroll() {
@@ -134,12 +93,14 @@ Return<void> FingerprintInscreen::onFinishEnroll() {
 }
 
 Return<void> FingerprintInscreen::onPress() {
+    acquire_wake_lock(PARTIAL_WAKE_LOCK, LOG_TAG);
     set(DISPPARAM_PATH, DISPPARAM_HBM_FOD_ON);
     xiaomiFingerprintService->extCmd(COMMAND_NIT, PARAM_NIT_630_FOD);
     return Void();
 }
 
 Return<void> FingerprintInscreen::onRelease() {
+    release_wake_lock(LOG_TAG);
     set(DISPPARAM_PATH, DISPPARAM_HBM_FOD_OFF);
     xiaomiFingerprintService->extCmd(COMMAND_NIT, PARAM_NIT_NONE);
     return Void();
@@ -158,6 +119,28 @@ Return<void> FingerprintInscreen::onHideFODView() {
 }
 
 Return<bool> FingerprintInscreen::handleAcquired(int32_t acquiredInfo, int32_t vendorCode) {
+    std::lock_guard<std::mutex> _lock(mCallbackLock);
+    if (mCallback == nullptr) {
+        return false;
+    }
+
+    if (acquiredInfo == 6) {
+        if (vendorCode == 22) {
+            Return<void> ret = mCallback->onFingerDown();
+            if (!ret.isOk()) {
+                LOG(ERROR) << "FingerDown() error: " << ret.description();
+            }
+            return true;
+        }
+
+        if (vendorCode == 23) {
+            Return<void> ret = mCallback->onFingerUp();
+            if (!ret.isOk()) {
+                LOG(ERROR) << "FingerUp() error: " << ret.description();
+            }
+            return true;
+        }
+    }
     LOG(ERROR) << "acquiredInfo: " << acquiredInfo << ", vendorCode: " << vendorCode << "\n";
     return false;
 }
@@ -188,7 +171,11 @@ Return<bool> FingerprintInscreen::shouldBoostBrightness() {
     return false;
 }
 
-Return<void> FingerprintInscreen::setCallback(const sp<IFingerprintInscreenCallback>& /* callback */) {
+Return<void> FingerprintInscreen::setCallback(const sp<IFingerprintInscreenCallback>& callback) {
+    {
+        std::lock_guard<std::mutex> _lock(mCallbackLock);
+        mCallback = callback;
+    }
     return Void();
 }
 
