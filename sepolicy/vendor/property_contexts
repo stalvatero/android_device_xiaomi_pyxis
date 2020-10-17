@@ -19,6 +19,7 @@ fpc_kpi                    u:object_r:vendor_fp_prop:s0
 gf.debug.dump_bigdata_data u:object_r:vendor_fp_prop:s0
 persist.sys.fp.goodix.     u:object_r:vendor_fp_prop:s0
 persist.vendor.sys.fp.     u:object_r:vendor_fp_prop:s0
+ro.boot.fpsensor           u:object_r:vendor_fp_prop:s0
 ro.hardware.fp             u:object_r:vendor_fp_prop:s0
 vendor.fps_hal.            u:object_r:vendor_fp_prop:s0
 
@@ -35,6 +36,12 @@ ro.miui.cust_variant       u:object_r:exported_default_prop:s0
 
 # Mlipay
 persist.vendor.sys.pay.ifaa              u:object_r:vendor_tee_listener_prop:s0
+
+# PowerHAL
+vendor.powerhal.state      u:object_r:vendor_power_prop:s0
+vendor.powerhal.audio      u:object_r:vendor_power_prop:s0
+vendor.powerhal.lpm        u:object_r:vendor_power_prop:s0
+vendor.powerhal.init       u:object_r:vendor_power_prop:s0
 
 # Sensors
 persist.sensor.sardisable  u:object_r:sensors_prop:s0

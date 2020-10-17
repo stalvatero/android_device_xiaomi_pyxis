@@ -50,22 +50,20 @@ public:
     Return<void> setLongPressEnabled(bool enabled) override;
     Return<int32_t> getDimAmount(int32_t brightness) override;
     Return<bool> shouldBoostBrightness() override;
-    Return<void> setCallback(const sp<IFingerprintInscreenCallback>& callback) override;
+    Return<void> setCallback(const sp<::vendor::lineage::biometrics::fingerprint::inscreen::V1_0::IFingerprintInscreenCallback>& callback) override;
 
 private:
-    bool mFodCircleVisible;
     sp<IXiaomiFingerprint> xiaomiFingerprintService;
-
-    std::mutex mCallbackLock;
-    sp<IFingerprintInscreenCallback> mCallback;
+    bool mPressed;
 };
 
 }  // namespace implementation
 }  // namespace V1_0
-}  // namespace inscreenx
+}  // namespace inscreen
 }  // namespace fingerprint
 }  // namespace biometrics
 }  // namespace lineage
 }  // namespace vendor
 
 #endif  // VENDOR_LINEAGE_BIOMETRICS_FINGERPRINT_INSCREEN_V1_0_FINGERPRINTINSCREEN_H
+
